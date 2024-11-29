@@ -1,0 +1,4 @@
+// OPEN-MOTHER AUDIO CODE
+//
+// this code will have all the audio stuff, like
+// "initialize_audio()","play_music()","play_sound()","stop_music()","pause_music()", etc...
