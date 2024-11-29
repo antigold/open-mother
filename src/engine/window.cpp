@@ -12,6 +12,7 @@
 SDL_Renderer* renderer = nullptr;
 SDL_Window* window = nullptr;
 
+// initializes SDL engine, basically just makes a window, and gives it a size, and a renderer (gpu accelerated)
 void initialize_sdl() {
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
