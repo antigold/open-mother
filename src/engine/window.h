@@ -4,5 +4,5 @@
 extern SDL_Renderer* renderer;
 extern SDL_Window* window;
 
-void initialize_sdl();
+void init_sdl();
 void exit_sdl();

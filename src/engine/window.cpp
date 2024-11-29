@@ -3,8 +3,6 @@
 // this code will contain window management stuff like
 // "create_window()", "get_window_dimensions()"?, "close_window()"
 
-// TODO comment this code for later
-
 #include "window.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_render.h>
@@ -13,7 +11,7 @@ SDL_Renderer* renderer = nullptr;
 SDL_Window* window = nullptr;
 
 // initializes SDL engine, basically just makes a window, and gives it a size, and a renderer (gpu accelerated)
-void initialize_sdl() {
+void init_sdl() {
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
         return;
@@ -31,6 +29,7 @@ void initialize_sdl() {
     }
 }
 
+//exits sdl, maybe i can add autosave here?
 void exit_sdl() {
     if (renderer) {
         SDL_DestroyRenderer(renderer);
