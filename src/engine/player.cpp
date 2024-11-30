@@ -12,8 +12,6 @@ void init_player(){
 }
 
 void player_move(){
-    const Uint8* keys = SDL_GetKeyboardState(NULL);
-
     if (is_key_pressed(SDL_SCANCODE_W)) player.y -= speed * dt;
     if (is_key_pressed(SDL_SCANCODE_S)) player.y += speed * dt;
     if (is_key_pressed(SDL_SCANCODE_A)) player.x -= speed * dt;

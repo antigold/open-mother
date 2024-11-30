@@ -1,5 +1,0 @@
-// OPEN-MOTHER RENDERER CODE
-//
-// this file will contain functions to draw sprites, etc
-// "draw_sprite()","draw_text()", "draw_tile()" etc...
-// probably will add a map renderer first
