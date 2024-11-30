@@ -3,6 +3,7 @@
 #include "engine/window.h"
 #include "engine/player.h"
 #include "engine/timer.h"
+#include "engine/input.h"
 
 int main() {
     bool running = true;
@@ -24,7 +25,7 @@ int main() {
         calculate_dt();
         printf("delta time = %f \n", dt);
 
-        player_input();
+        player_move();
 
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
