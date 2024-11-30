@@ -3,13 +3,15 @@
 // delta time and all that
 #include "timer.h"
 
+Uint32 lastTime;
+float dt;
+
 void init_time(){
     lastTime = SDL_GetTicks(); //gets initial time
 }
 
-float get_dt(){
-        Uint32 currentTime = SDL_GetTicks();  //gets current time
-        float dt = (currentTime - lastTime) / 1000.0f;  //calculates delta time
-        lastTime = currentTime;  //updates lasttime
-        return dt;
+void calculate_dt(){
+    Uint32 currentTime = SDL_GetTicks();  //gets current time
+    dt = (currentTime - lastTime) / 1000.0f;  //calculates delta time
+    lastTime = currentTime;  //updates lasttime
 }

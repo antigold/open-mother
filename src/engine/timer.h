@@ -2,6 +2,7 @@
 #include <SDL2/SDL_render.h>
 
 extern Uint32 lastTime;
+extern float dt;
 
 void init_time();
-float get_dt();
+void calculate_dt();

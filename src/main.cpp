@@ -5,7 +5,6 @@
 #include "engine/timer.h"
 
 int main() {
-    Uint32 lastTime = SDL_GetTicks(); //gets initial time
     bool running = true;
     SDL_Event event;
 
@@ -18,13 +17,14 @@ int main() {
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_QUIT) running = false;
         }
-
         
         // V debug stuff
         // printf("W: %d, A: %d, S: %d, D: %d\n", keys[SDL_SCANCODE_W], keys[SDL_SCANCODE_A], keys[SDL_SCANCODE_S], keys[SDL_SCANCODE_D]);
         // printf("X: %f, Y: %f\n", player.y, player.x);
-        printf("delta time = %f", get_dt());
-        
+        calculate_dt();
+        printf("delta time = %f \n", dt);
+
+        player_input();
 
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
@@ -33,7 +33,7 @@ int main() {
         SDL_RenderFillRectF(renderer, &player);
 
         SDL_RenderPresent(renderer);
-        SDL_Delay(8);
+        SDL_Delay(6);//do this or else the movement won't work?
     }
     exit_sdl();
     
