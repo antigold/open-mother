@@ -1,3 +1,5 @@
 #include <SDL2/SDL.h>
 
-void render_loop();
+void render_pipeline();
+void render_show();
+void render_clear();

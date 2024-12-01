@@ -5,6 +5,8 @@
 #include "engine/input.h"
 #include "engine/renderer.h"
 #include "engine/audio.h"
+#include "engine/game.h"
+#include <vector>
 
 int main() {
     bool running = true;
@@ -17,6 +19,13 @@ int main() {
     init_audio();
     play_music("src/assets/music/somemusic.ogg");
 
+    // TODO - make this happen in map.cpp
+    std::vector<MapTile> tiles = {
+        MapTile(0, 0, 10, 10, 255, 0, 0), // red
+        MapTile(10, 0, 10, 10, 0, 255, 0), // gree
+        MapTile(20, 0, 10, 10, 0, 0, 255)  // blue
+    };
+
     while (running) {
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_QUIT) running = false;
@@ -24,7 +33,12 @@ int main() {
         // printf("X: %f, Y: %f\n", player.y, player.x);
         calculate_dt();
         player_move();
-        render_loop();
+        for (auto& tile : tiles) { // renders map tiles, temporary
+            tile.render(renderer);
+        }
+        render_pipeline();
+        render_show();
+        render_clear();
     
         SDL_Delay(6);//do this or else the movement won't work?
     }
