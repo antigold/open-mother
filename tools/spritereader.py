@@ -21,7 +21,7 @@ def read_file(filebytes):
 
 def draw_square(x,y,w,h,r,g,b):
     colore = f"#{r:02x}{g:02x}{b:02x}"
-    canvas.create_rectangle(x, y, x+w, y+h, outline='black', fill=colore)
+    canvas.create_rectangle(x, y, x+w, y+h, outline='', fill=colore)
 
     print(f"drawing at {x} {y}, size {w} {h} and color {r} {g} {b}.")
 

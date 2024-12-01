@@ -13,11 +13,11 @@ int main() {
     SDL_Event event;
 
     //initializes stuff
-    init_time();
     init_sdl();
+    init_time();
     init_player();
     init_audio();
-    play_music("src/assets/music/somemusic.ogg");
+    // play_music("src/assets/music/somemusic.ogg");
 
     // TODO - make this happen in map.cpp
     std::vector<MapTile> tiles = {
