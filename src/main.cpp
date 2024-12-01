@@ -21,9 +21,9 @@ int main() {
 
     // TODO - make this happen in map.cpp
     std::vector<MapTile> tiles = {
-        MapTile(0, 0, 10, 10, 255, 0, 0), // red
-        MapTile(10, 0, 10, 10, 0, 255, 0), // gree
-        MapTile(20, 0, 10, 10, 0, 0, 255)  // blue
+        MapTile(0, 0, 255, 0, 0), // red
+        MapTile(1, 0, 0, 255, 0), // gree
+        MapTile(2, 0, 0, 0, 255)  // blue
     };
 
     while (running) {

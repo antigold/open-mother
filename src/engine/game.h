@@ -7,6 +7,6 @@ private:
     int r, g, b;
 
 public:
-    MapTile(int xpos, int ypos, int xsize, int ysize, int r, int g, int b);
+    MapTile(int xpos, int ypos, int r, int g, int b);
     void render(SDL_Renderer* renderer);
 };
