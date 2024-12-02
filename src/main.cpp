@@ -6,6 +6,7 @@
 #include "engine/renderer.h"
 #include "engine/audio.h"
 #include "engine/game.h"
+#include "engine/map.h"
 #include <vector>
 
 int main() {
@@ -21,9 +22,9 @@ int main() {
 
     // TODO - make this happen in map.cpp
     std::vector<MapTile> tiles = {
-        MapTile(0, 0, 255, 0, 0), // red
-        MapTile(1, 0, 0, 255, 0), // gree
-        MapTile(2, 0, 0, 0, 255)  // blue
+        MapTile(3, 4, 255, 0, 0), // red
+        MapTile(4, 4, 0, 255, 0), // gree
+        MapTile(5, 4, 0, 0, 255)  // blue
     };
 
     while (running) {

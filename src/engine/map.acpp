@@ -1,5 +1,0 @@
-// OPEN-MOTHER MAP CODE
-//
-// "load_map()","render_map()","handle_collisions()","update_map()"
-
-//for now we will hardcode a map inside here, then we will use .omm files

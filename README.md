@@ -18,3 +18,8 @@ This is a list of features to be expected to be added inside this engine:
 - Dialogue system
 - Inventory system
 - Battle system
+
+## TODO List
+- [ ] add sprite renderer using png
+- [ ] create map creator using python
+- [ ] ...
