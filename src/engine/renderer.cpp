@@ -7,6 +7,7 @@
 #include "renderer.h"
 #include "window.h"
 #include "player.h"
+#include "game.h"
 
 // * RENDER PIPELINE : THIS IS WHERE EVERYTHING WILL BE PASSED TO RENDER
 void render_pipeline(){

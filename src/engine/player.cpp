@@ -4,6 +4,7 @@
 #include "player.h"
 #include "timer.h"
 #include "input.h"
+#include "game.h"
 
 SDL_FRect player;
 
@@ -12,8 +13,8 @@ void init_player(){
 }
 
 void player_move(){
-    if (is_key_pressed(SDL_SCANCODE_W)) player.y -= speed * dt;
-    if (is_key_pressed(SDL_SCANCODE_S)) player.y += speed * dt;
-    if (is_key_pressed(SDL_SCANCODE_A)) player.x -= speed * dt;
-    if (is_key_pressed(SDL_SCANCODE_D)) player.x += speed * dt;
+    if (is_key_pressed(SDL_SCANCODE_W)) camera.sety(camera.gety() - (speed * dt));
+    if (is_key_pressed(SDL_SCANCODE_S)) camera.sety(camera.gety() + (speed * dt));
+    if (is_key_pressed(SDL_SCANCODE_A)) camera.setx(camera.getx() - (speed * dt));
+    if (is_key_pressed(SDL_SCANCODE_D)) camera.setx(camera.getx() + (speed * dt));
 }

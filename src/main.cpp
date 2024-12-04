@@ -9,10 +9,13 @@
 #include "engine/map.h"
 #include <vector>
 
+GameCamera camera = GameCamera(GameVector(0,0));
+
 int main() {
     bool running = true;
     SDL_Event event;
 
+    camera.debug();
     //initializes stuff
     init_sdl();
     init_time();
@@ -24,7 +27,9 @@ int main() {
     std::vector<MapTile> tiles = {
         MapTile(3, 4, 255, 0, 0), // red
         MapTile(4, 4, 0, 255, 0), // gree
-        MapTile(5, 4, 0, 0, 255)  // blue
+        MapTile(5, 4, 0, 0, 255),  // blue
+        MapTile(6, 4, 0, 0, 255), // blue
+        MapTile(7, 4, 0, 0, 255),  // blue
     };
 
     while (running) {

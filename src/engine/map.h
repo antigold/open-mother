@@ -3,7 +3,7 @@
 
 class MapTile {
 private:
-    SDL_Rect tile;
+    SDL_FRect tile;
     int r, g, b;
 
 public:
