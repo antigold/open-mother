@@ -4,18 +4,23 @@
 // player = { 300.0f, 200.0f, 32.0f, 32.0f } i need this for later
 
 #include "game.h"
-
-extern float camerax;
-extern float cameray;
+#include "window.h"
 
 // Game 2D Vector class
-GameVector::GameVector(float x, float y) {
-    this->x = x;
-    this->y = y; 
-};
+// GameVector::GameVector() {
+
+// };
 
 void GameVector::debug(){
     printf("X:%f - Y:%f", x,y);
+};
+
+float GameVector::getrelativex(){
+    return x - camera.getx() + (windowWidth/2); //adds centering and position from camera
+};
+
+float GameVector::getrelativey(){
+    return y - camera.gety() + (windowHeight/2); //adds centering and position from camera
 };
 
 float GameVector::getx(){
@@ -42,6 +47,11 @@ GameCamera::GameCamera(GameVector pos) : pos(pos){
 void GameCamera::debug(){
     printf("X:%f - Y:%f", pos.getx(), pos.gety());
 };
+
+void GameCamera::setpos(GameVector newpos){
+    pos.setx(newpos.getx());
+    pos.sety(newpos.gety());
+}
 
 float GameCamera::getx(){
     return pos.getx();

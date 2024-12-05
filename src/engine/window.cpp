@@ -7,6 +7,9 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_render.h>
 
+float windowWidth, windowHeight;
+int int_ww, int_wh;
+
 SDL_Renderer* renderer = nullptr;
 SDL_Window* window = nullptr;
 
@@ -17,7 +20,7 @@ void init_sdl() {
         return;
     }
 
-    window = SDL_CreateWindow("openmother", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 480, SDL_WINDOW_SHOWN);
+    window = SDL_CreateWindow("openmother", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1280, 720, SDL_WINDOW_SHOWN);
     if (!window) {
         printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
         return;
@@ -27,6 +30,12 @@ void init_sdl() {
     if (!renderer) {
         printf("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
     }
+}
+
+void get_window_resolution(){
+    SDL_GetWindowSize(window, &int_ww, &int_wh);
+    windowWidth = static_cast<float>(int_ww);
+    windowHeight = static_cast<float>(int_wh);
 }
 
 //exits sdl, maybe i can add autosave here?

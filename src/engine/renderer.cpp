@@ -6,14 +6,6 @@
 
 #include "renderer.h"
 #include "window.h"
-#include "player.h"
-#include "game.h"
-
-// * RENDER PIPELINE : THIS IS WHERE EVERYTHING WILL BE PASSED TO RENDER
-void render_pipeline(){
-    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255); // sets color to white
-    SDL_RenderFillRectF(renderer, &player); // renders player
-}
 
 void render_show(){
     SDL_RenderPresent(renderer); // shows render

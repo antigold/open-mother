@@ -1,3 +1,4 @@
+#pragma once
 #include <SDL2/SDL.h>
 
 // ! CLASSES //
@@ -8,8 +9,10 @@ private:
     float y;
 
 public:
-    GameVector(float x, float y);
+    GameVector(float xpos, float ypos) : x(xpos), y(ypos) {};
     void debug();
+    float getrelativex();
+    float getrelativey();
     float getx();
     float gety();
     void setx(float x);
@@ -24,6 +27,7 @@ private:
 public:
     GameCamera(GameVector pos);
     void debug();
+    void setpos(GameVector newpos);
     float getx();
     float gety();
     void setx(float x);
