@@ -30,6 +30,8 @@ void init_sdl() {
     if (!renderer) {
         printf("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
     }
+
+    SDL_SetWindowResizable(window, SDL_TRUE);
 }
 
 void get_window_resolution(){
