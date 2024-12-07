@@ -8,7 +8,8 @@
 #include "engine/game.h"
 #include "engine/map.h"
 #include <vector>
-#include <iostream> // to debug
+// #include <iostream> // to debug
+//fuck you git
 
 GameCamera camera = GameCamera(GameVector(0,0));
 
