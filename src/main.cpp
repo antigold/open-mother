@@ -24,7 +24,7 @@ int main() {
     init_time();
     init_player();
     init_audio();
-    play_music("src/assets/music/filly.ogg");
+    play_music("src/assets/music/somemusic.ogg");
     add_texture("test", "src/assets/textures/pinkie.jpg", renderer);
 
     // TODO - make this happen in map.cpp
