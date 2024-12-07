@@ -1,5 +1,6 @@
 #pragma once
 #include <SDL2/SDL.h>
+#include <cstdio>
 
 extern SDL_Renderer* renderer;
 extern SDL_Window* window;

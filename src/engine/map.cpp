@@ -29,6 +29,7 @@ void MapTile::render(SDL_Renderer* renderer) {
     };
 
     // printf("%f - %f\n", pos.getx(), pos.gety());
-    SDL_SetRenderDrawColor(renderer, r, g, b, 255); //color
-    SDL_RenderFillRectF(renderer, &renderTile); //draws on screen
+    // SDL_SetRenderDrawColor(renderer, r, g, b, 255); //color
+    // SDL_RenderFillRectF(renderer, &renderTile); //draws on screen
+    SDL_RenderCopyF(renderer, texture, nullptr, &renderTile);
 }

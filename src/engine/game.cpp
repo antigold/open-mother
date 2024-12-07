@@ -68,3 +68,29 @@ void GameCamera::setx(float x){
 void GameCamera::sety(float y){
     pos.sety(y);
 };
+
+//---------------------------------------------------- methods
+
+std::unordered_map<std::string, SDL_Texture*> textures;
+
+SDL_Texture* load_texture(const char* path, SDL_Renderer* renderer) {
+    SDL_Surface* tempSurface = IMG_Load(path);
+    if (!tempSurface) {
+        printf("Unable to load image %s! SDL_image Error: %s\n", path, IMG_GetError());
+        return nullptr;
+    }
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, tempSurface);
+    SDL_FreeSurface(tempSurface);
+    return texture;
+}
+
+void add_texture(const std::string& name, const char* path, SDL_Renderer* renderer) {
+    SDL_Texture* texture = load_texture(path, renderer);
+    if (texture) {
+        textures[name] = texture;
+    }
+}
+
+SDL_Texture* get_texture(const std::string& name) {
+    return textures[name];
+}

@@ -1,5 +1,8 @@
 #pragma once
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <unordered_map>
+#include <string>
 
 // ! CLASSES //
 // ! Game 2D Vector class
@@ -35,3 +38,14 @@ public:
 };
 
 extern GameCamera camera; // global camera class
+
+extern std::unordered_map<std::string, SDL_Texture*> textures; // textures - usage: textures["texturename"]
+
+//LOADS TEXTURES
+SDL_Texture* load_texture(const char* path, SDL_Renderer* renderer);
+
+//ADDS TEXTURE - USAGE: add_texture("texturename", "texturepath", renderer);
+void add_texture(const std::string& name, const char* path, SDL_Renderer* renderer);
+
+//GETS TEXTURE - USAGE: get_texture("texturename");
+SDL_Texture* get_texture(const std::string& name);

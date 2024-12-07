@@ -1,7 +1,7 @@
 # Compiler and flags
-CXX := g++
-CXXFLAGS := -Wall -Wextra -std=c++17 -I./src `sdl2-config --cflags`
-LDFLAGS := `sdl2-config --libs` -lSDL2_mixer -lSDL2_image
+CXX := x86_64-w64-mingw32-g++
+CXXFLAGS := -Wall -Wextra -std=c++17 -I./src -I/usr/x86_64-w64-mingw32/include/SDL2
+LDFLAGS := -L/usr/x86_64-w64-mingw32/lib -lSDL2 -lSDL2_image -lSDL2_mixer -lsetupapi
 
 # Directories
 SRC_DIR := src
@@ -10,7 +10,7 @@ ENGINE_SRC_DIR := $(SRC_DIR)/engine
 ENGINE_OBJ_DIR := $(OBJ_DIR)/engine
 
 # Output executable
-TARGET := releases/openmother
+TARGET := releases/openmother.exe
 
 # Source and object files
 MAIN_SRC := $(SRC_DIR)/main.cpp
@@ -44,4 +44,3 @@ clean:
 
 # Phony targets
 .PHONY: all clean
-
