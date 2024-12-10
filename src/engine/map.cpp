@@ -22,10 +22,10 @@
 // Render function implementation
 void MapTile::render(SDL_Renderer* renderer) {
     SDL_FRect renderTile = {
-        pos.getrelativex() + (pos.getx() * 39), // why the fuck does it work when i write 39
-        pos.getrelativey() + (pos.gety() * 39), // 39 or else it leaves gaps even tho it's 40x40
-        40,
-        40
+        pos.getrelativex() + (pos.getx() * 59), // why the fuck does it work when i write 39
+        pos.getrelativey() + (pos.gety() * 59), // 39 or else it leaves gaps even tho it's 40x40
+        60,
+        60
     };
 
     // printf("%f - %f\n", pos.getx(), pos.gety());

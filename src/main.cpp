@@ -17,7 +17,6 @@ int main() {
     bool running = true;
     SDL_Event event;
 
-    camera.debug();
     //initializes stuff
     init_sdl();
     get_window_resolution();
@@ -37,9 +36,9 @@ int main() {
     //     MapTile(17, 4, get_texture("test")),
     // };
 
-    std::vector<MapTile> tiles;
+    std::vector<MapTile> tiles; // here will be stored all tiles, add this in map.h as always and make it global
 
-    for (int row = -15; row < 15; row++){ // temporarily creates a 30x30 grid of tiles
+    for (int row = -15; row < 15; row++){ // temporarily creates a grid of tiles
         for (int col = -30; col < 30; col++){
             float x = col;
             float y = row;
@@ -86,7 +85,9 @@ int main() {
 // ! QADTDL
 // DONE - fix the fullscreen thing
 // DONE - i put the player in the middle, all i need to do now is to add SCRW/2 to every tile's X and SRCH/2 to every tile's Y
-// TODO - import textures
-// just for tiles for now
+// DONE - TODO - import textures
+// DONE - just for tiles for now
 // TODO - start working on maps!
 // maybe i should try importing a handmade map first.
+// TODO - start making mods instead of hardcoding the shit in here
+// TODO - start working on entities
