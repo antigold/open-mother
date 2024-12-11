@@ -1,3 +1,4 @@
 releases/
 obj/
 .vscode/
+src/.git-hash
