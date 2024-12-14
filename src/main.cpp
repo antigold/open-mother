@@ -7,15 +7,28 @@
 #include "engine/audio.h"
 #include "engine/game.h"
 #include "engine/map.h"
+#include "engine/mod.h"
+#include "engine/logging.h"
+//i should make main.h bruh
 #include <vector>
 // #include <iostream> // to debug
 //fuck you git
 
 GameCamera camera = GameCamera(GameVector(0,0));
 
-int main() {
+int main(int argc, char *argv[]) {
     bool running = true;
     SDL_Event event;
+
+    put(INFO_CODE, "open mother early access");
+
+    // checks if it has a mod in arguments, if not, then commits suicide
+    if(argc < 2){
+        put(ERROR_CODE, "undefined mod");
+        return 0;
+    }    
+
+    // fetch_mod_data();
 
     //initializes stuff
     init_sdl();
@@ -23,7 +36,7 @@ int main() {
     init_time();
     init_player();
     init_audio();
-    play_music("src/assets/music/somemusic.ogg");
+    // play_music("src/assets/music/somemusic.ogg");
     add_texture("test", "src/assets/textures/pinkie.jpg", renderer);
 
     // TODO - make this happen in map.cpp
@@ -38,8 +51,8 @@ int main() {
 
     std::vector<MapTile> tiles; // here will be stored all tiles, add this in map.h as always and make it global
 
-    for (int row = -15; row < 15; row++){ // temporarily creates a grid of tiles
-        for (int col = -30; col < 30; col++){
+    for (int row = 0; row < 255; row++){ // temporarily creates a grid of tiles
+        for (int col = 0; col < 255; col++){
             float x = col;
             float y = row;
             tiles.emplace_back(x,y, get_texture("test"));
