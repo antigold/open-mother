@@ -84,6 +84,7 @@ SDL_Texture* load_texture(const char* path, SDL_Renderer* renderer) {
     return texture;
 }
 
+// TODO - replace the texture name with integers so that our map reader will have more ease reading it
 void add_texture(const std::string& name, const char* path, SDL_Renderer* renderer) {
     SDL_Texture* texture = load_texture(path, renderer);
     if (texture) {

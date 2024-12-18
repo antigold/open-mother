@@ -1,4 +1,4 @@
-#define SDL_MAIN_HANDLED
+#define SDL_MAIN_HANDLED //otherwise winblows can't understand this file
 #include <SDL2/SDL.h>
 #include "engine/window.h"
 #include "engine/player.h"
@@ -9,6 +9,7 @@
 #include "engine/map.h"
 #include "engine/mod.h"
 #include "engine/logging.h"
+#include "engine/filesys.h"
 //i should make main.h bruh
 #include <vector>
 // #include <iostream> // to debug
@@ -26,9 +27,9 @@ int main(int argc, char *argv[]) {
     if(argc < 2){
         put(ERROR_CODE, "undefined mod");
         return 0;
-    }    
+    }
 
-    // fetch_mod_data();
+    fetch_mod_data(argv[1]);
 
     //initializes stuff
     init_sdl();
@@ -37,7 +38,11 @@ int main(int argc, char *argv[]) {
     init_player();
     init_audio();
     // play_music("src/assets/music/somemusic.ogg");
-    add_texture("test", "src/assets/textures/pinkie.jpg", renderer);
+    add_texture("test", get_relative_path("textures/pinkie.jpg"), renderer);
+    load_map();
+
+    is_map_valid("maps/broken.omm");
+    is_map_valid("maps/dev.omm");
 
     // TODO - make this happen in map.cpp
     // std::vector<MapTile> tiles = {
@@ -48,16 +53,6 @@ int main(int argc, char *argv[]) {
     //     MapTile(7, 4, get_texture("test")),
     //     MapTile(17, 4, get_texture("test")),
     // };
-
-    std::vector<MapTile> tiles; // here will be stored all tiles, add this in map.h as always and make it global
-
-    for (int row = 0; row < 255; row++){ // temporarily creates a grid of tiles
-        for (int col = 0; col < 255; col++){
-            float x = col;
-            float y = row;
-            tiles.emplace_back(x,y, get_texture("test"));
-        }
-    }
 
     while (running) {
         while (SDL_PollEvent(&event)) {
@@ -103,4 +98,5 @@ int main(int argc, char *argv[]) {
 // TODO - start working on maps!
 // maybe i should try importing a handmade map first.
 // TODO - start making mods instead of hardcoding the shit in here
+// TODO -- almost done, now assets per mod, include main lua files and maps
 // TODO - start working on entities

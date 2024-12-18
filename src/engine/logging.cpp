@@ -3,9 +3,10 @@
 // this code will have debug output log stuff with colors
 // "put()"
 
-// FOR NOW ONLY WORKS FOR LINUX I DONT HAVE WINDOWS
+// FOR NOW COLORS ONLY WORK FOR LINUX I DONT HAVE WINDOWS
 #include "logging.h"
 
+// TODO - optimize
 void put(LogLevel level, const std::string& message) {
     switch (level) {
         case INFO_CODE:

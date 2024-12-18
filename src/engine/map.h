@@ -4,6 +4,7 @@
 #include <SDL2/SDL_render.h>
 #include "window.h"
 #include "game.h"
+#include "vector"
 
 class MapTile {
 private:
@@ -16,3 +17,7 @@ public:
         : pos(xpos, ypos), texture(texture) {}
     void render(SDL_Renderer* renderer);
 };
+
+void load_map();
+
+extern std::vector<MapTile> tiles; //map tiles will be stored here

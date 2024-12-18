@@ -33,3 +33,16 @@ void MapTile::render(SDL_Renderer* renderer) {
     // SDL_RenderFillRectF(renderer, &renderTile); //draws on screen
     SDL_RenderCopyF(renderer, texture, nullptr, &renderTile);
 }
+
+std::vector<MapTile> tiles; // declare
+
+void load_map(){
+    // for (int row = 0; row < 255; row++){ // temporarily creates a grid of tiles
+    //     for (int col = 0; col < 255; col++){
+    //         float x = col;
+    //         float y = row;
+    //         tiles.emplace_back(x,y, get_texture("test"));
+    //     }
+    // }
+
+}
