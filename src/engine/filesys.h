@@ -1,5 +1,6 @@
 #include <string>
 #include <filesystem>
+#include "map.h"
 #include "mod.h"
 #include <fstream>
 #include <vector>
@@ -27,4 +28,9 @@ const char* get_relative_path(const std::string& relativePath); // gets the path
 ! if i want to grab the path of the pinkie.jpg texture, i do "get_relative_path("textures/pinkie.jpg")"
 */
 
+// ! MAP STUFF
+
 bool is_map_valid(const char* path);
+// std::string read_string(std::string filepath, uint startfile);
+
+void readomm(std::string filepath);

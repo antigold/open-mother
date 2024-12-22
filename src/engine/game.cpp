@@ -93,5 +93,10 @@ void add_texture(const std::string& name, const char* path, SDL_Renderer* render
 }
 
 SDL_Texture* get_texture(const std::string& name) {
-    return textures[name];
+    auto it = textures.find(name);  //find
+    if (it != textures.end()) {
+        return it->second;  //yay
+    } else {
+        return textures["missing"];  //:c
+    }
 }

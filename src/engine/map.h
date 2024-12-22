@@ -18,6 +18,16 @@ public:
     void render(SDL_Renderer* renderer);
 };
 
+struct MapData{
+    std::string mapname;
+    std::string musicpath;
+    std::string musicname;
+    std::string musicauthor;
+
+    std::vector<MapTile> tiles;
+};
+
 void load_map();
 
-extern std::vector<MapTile> tiles; //map tiles will be stored here
+// extern std::vector<MapTile> tiles; //map tiles will be stored here
+extern MapData map; // whole mapdata here

@@ -6,6 +6,7 @@
 
 #include "map.h"
 
+MapData map;
 // * MAP TILE
 // TODO - make this class a bit better cuz now it's kinda dogshit
 // all tiles will be 40x40 px
@@ -34,15 +35,8 @@ void MapTile::render(SDL_Renderer* renderer) {
     SDL_RenderCopyF(renderer, texture, nullptr, &renderTile);
 }
 
-std::vector<MapTile> tiles; // declare
+// std::vector<MapTile> tiles; // declare
 
 void load_map(){
-    // for (int row = 0; row < 255; row++){ // temporarily creates a grid of tiles
-    //     for (int col = 0; col < 255; col++){
-    //         float x = col;
-    //         float y = row;
-    //         tiles.emplace_back(x,y, get_texture("test"));
-    //     }
-    // }
-
+    return;
 }

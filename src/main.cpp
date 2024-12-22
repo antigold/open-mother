@@ -12,7 +12,7 @@
 #include "engine/filesys.h"
 //i should make main.h bruh
 #include <vector>
-// #include <iostream> // to debug
+#include <iostream> // to debug
 //fuck you git
 
 GameCamera camera = GameCamera(GameVector(0,0));
@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
     bool running = true;
     SDL_Event event;
 
-    put(INFO_CODE, "open mother early access");
+    printf("OPEN-MOTHER - This engine is heavily unfinished, if you managed to compile it, congratulations\n");
 
     // checks if it has a mod in arguments, if not, then commits suicide
     if(argc < 2){
@@ -39,10 +39,15 @@ int main(int argc, char *argv[]) {
     init_audio();
     // play_music("src/assets/music/somemusic.ogg");
     add_texture("test", get_relative_path("textures/pinkie.jpg"), renderer);
+    add_texture("missing", get_relative_path("textures/missing.jpg"), renderer);
     load_map();
 
-    is_map_valid("maps/broken.omm");
-    is_map_valid("maps/dev.omm");
+    // is_map_valid("maps/broken.omm");
+    // is_map_valid("maps/dev.omm");
+    // put(INFO_CODE, read_string("maps/dev.omm",0));
+    // put(INFO_CODE, read_string("maps/dev.omm",4));
+
+    readomm("maps/dev.omm");
 
     // TODO - make this happen in map.cpp
     // std::vector<MapTile> tiles = {
@@ -75,7 +80,7 @@ int main(int argc, char *argv[]) {
         calculate_dt();
         player_move();
         camera.setpos(playerpos);
-        for (auto& tile : tiles) { // renders map tiles, temporary
+        for (auto& tile : map.tiles) { // renders map tiles, temporary
             tile.render(renderer);
         }
         player_render();
@@ -95,6 +100,8 @@ int main(int argc, char *argv[]) {
 // DONE - i put the player in the middle, all i need to do now is to add SCRW/2 to every tile's X and SRCH/2 to every tile's Y
 // DONE - TODO - import textures
 // DONE - just for tiles for now
+// TODO - import every texture inside textures folder of mod
+// missing.jpg will be special
 // TODO - start working on maps!
 // maybe i should try importing a handmade map first.
 // TODO - start making mods instead of hardcoding the shit in here
