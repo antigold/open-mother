@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
 
     // checks if it has a mod in arguments, if not, then commits suicide
     if(argc < 2){
-        put(ERROR_CODE, "undefined mod");
+        put(ERROR_CODE, "open-mother is a game engine, it needs a mod to run, check if your mod has a x file inside it"); //x is placeholder for liblist.gam for now
         return 0;
     }
 
@@ -38,26 +38,17 @@ int main(int argc, char *argv[]) {
     init_player();
     init_audio();
     // play_music("src/assets/music/somemusic.ogg");
-    add_texture("test", get_relative_path("textures/pinkie.jpg"), renderer);
-    add_texture("missing", get_relative_path("textures/missing.jpg"), renderer);
-    load_map();
 
-    // is_map_valid("maps/broken.omm");
-    // is_map_valid("maps/dev.omm");
-    // put(INFO_CODE, read_string("maps/dev.omm",0));
-    // put(INFO_CODE, read_string("maps/dev.omm",4));
+    // TODO
+    // add_texture("test", get_relative_path("textures/pinkie.jpg"), renderer);
+    // add_texture("swag", get_relative_path("textures/swag.jpg"), renderer);
+    // add_texture("missing", get_relative_path("textures/missing.jpg"), renderer);
 
-    readomm("maps/dev.omm");
+    fetch_mod_textures();
 
-    // TODO - make this happen in map.cpp
-    // std::vector<MapTile> tiles = {
-    //     MapTile(3, 4, get_texture("test")),
-    //     MapTile(4, 4, get_texture("test")),
-    //     MapTile(5, 4, get_texture("test")),
-    //     MapTile(6, 4, get_texture("test")),
-    //     MapTile(7, 4, get_texture("test")),
-    //     MapTile(17, 4, get_texture("test")),
-    // };
+    // readomm("maps/map.omm"); // loads map
+    load_map("maps/map.omm");
+
 
     while (running) {
         while (SDL_PollEvent(&event)) {
@@ -100,10 +91,10 @@ int main(int argc, char *argv[]) {
 // DONE - i put the player in the middle, all i need to do now is to add SCRW/2 to every tile's X and SRCH/2 to every tile's Y
 // DONE - TODO - import textures
 // DONE - just for tiles for now
-// TODO - import every texture inside textures folder of mod
-// missing.jpg will be special
-// TODO - start working on maps!
+// DONE - import every texture inside textures folder of mod
+// TODO - missing.jpg will be special
+// DONE - TODO - start working on maps!
 // maybe i should try importing a handmade map first.
-// TODO - start making mods instead of hardcoding the shit in here
+// DONE - TODO - start making mods instead of hardcoding the shit in here
 // TODO -- almost done, now assets per mod, include main lua files and maps
 // TODO - start working on entities

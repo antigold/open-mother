@@ -5,6 +5,8 @@
 #include "window.h"
 #include "game.h"
 #include "vector"
+#include "filesys.h"
+#include "audio.h"
 
 class MapTile {
 private:
@@ -27,7 +29,7 @@ struct MapData{
     std::vector<MapTile> tiles;
 };
 
-void load_map();
-
 // extern std::vector<MapTile> tiles; //map tiles will be stored here
 extern MapData map; // whole mapdata here
+
+void load_map(const char* filepath);

@@ -5,6 +5,8 @@
 //for now we will hardcode a map inside here, then we will use .omm files
 
 #include "map.h"
+#include "audio.h"
+#include "filesys.h"
 
 MapData map;
 // * MAP TILE
@@ -37,6 +39,7 @@ void MapTile::render(SDL_Renderer* renderer) {
 
 // std::vector<MapTile> tiles; // declare
 
-void load_map(){
-    return;
+void load_map(const char* filepath){
+    readomm(filepath);
+    play_music(get_relative_path(map.musicpath));
 }

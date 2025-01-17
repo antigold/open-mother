@@ -3,6 +3,8 @@
 // this code will have all the audio stuff, like
 // "initialize_audio()","play_music()","play_sound()","stop_music()","pause_music()", etc...
 #include "audio.h"
+#include "logging.h"
+#include <SDL2/SDL_mixer.h>
 
 Mix_Music* music;
 
@@ -21,11 +23,11 @@ bool init_audio() {
     return true;
 }
 
-bool play_music(char* musicpath){
+bool play_music(const char* musicpath){
     //load a music file
     music = Mix_LoadMUS(musicpath);
     if (!music) {
-        std::cerr << "Error loading audio: " << Mix_GetError() << '\n';
+        put(ERROR_CODE, Mix_GetError());
         Mix_CloseAudio();
         return false;
     }

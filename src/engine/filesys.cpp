@@ -124,7 +124,7 @@ void readomm(std::string filepath){
         return;
     }
 
-    uint32_t locationinmetadata = 4; //initial is 4, skips magic
+    uint32_t locationinmetadata = 4; //this value determines WHERE in the bin file you are
     std::string tempstr;
     std::vector<std::string> metadata;
 
@@ -141,6 +141,8 @@ void readomm(std::string filepath){
     map.musicname = metadata[2];
     map.musicauthor = metadata[3];
 
+    put(INFO_CODE, "loading map " + filepath + " - " + map.mapname + "...");
+
     // put(INFO_CODE, "map name : " + metadata[0]);
     // put(INFO_CODE, "music path : " + metadata[1]);
     // put(INFO_CODE, "music name : " + metadata[2]);
@@ -151,23 +153,19 @@ void readomm(std::string filepath){
     // ! write this down in privatewiki the fact that it needs to know how many tiles beforehand
     
 
-    printf("%i loc\n",locationinmetadata);
-    int tilenumber = read_int(filepath, locationinmetadata);
+    int tilenumber = read_int(filepath, locationinmetadata); // amount of tiles inside map, use this so i can know where to stop
 
-    printf("found %i tiles", tilenumber);
-    map.tiles.emplace_back(MapTile(0,0,get_texture("test")));
-
+    // gets tile data
     for(int i = 0; i < tilenumber; i++){
-        // put(INFO_CODE, "newtile");
-        int temptilex = read_int(filepath, locationinmetadata);
-        // printf("the value of locationinmetadata for this shit is %i\n",locationinmetadata);
-        int temptiley = read_int(filepath, locationinmetadata);
-        std::string tiletexture = read_string(filepath, locationinmetadata);
+        int temptilex = read_int(filepath, locationinmetadata); //gets x from file
+        int temptiley = read_int(filepath, locationinmetadata); //gets y from file
+        
+        std::string tiletexture = read_string(filepath, locationinmetadata); // gets texture name
 
-        locationinmetadata += tiletexture.length()+1;
+        locationinmetadata += tiletexture.length()+1; // increments
 
-        printf("SUMMONING TILE AT (%i; %i)\n",temptilex,temptiley);
-        map.tiles.emplace_back(MapTile(temptilex,temptiley,get_texture(tiletexture)));
+        // printf("SUMMONING TILE AT (%i; %i)\n",temptilex,temptiley);
+        map.tiles.emplace_back(MapTile(temptilex,temptiley,get_texture(tiletexture))); //add tiles read before to map
     }
 }
 
