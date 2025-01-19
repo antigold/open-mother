@@ -10,7 +10,7 @@
 
 MapData map;
 // * MAP TILE
-// TODO - make this class a bit better cuz now it's kinda dogshit
+// TODO - make this class a bit better cuz now it's kinda bad
 // all tiles will be 40x40 px
 // MapTile::MapTile(float xpos, float ypos, int r, int g, int b) {
 //     tile.x = xpos*40;
@@ -42,4 +42,8 @@ void MapTile::render(SDL_Renderer* renderer) {
 void load_map(const char* filepath){
     readomm(filepath);
     play_music(get_relative_path(map.musicpath));
+}
+
+void unload_map(){
+    map.tiles.clear();
 }

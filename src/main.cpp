@@ -1,24 +1,11 @@
 #define SDL_MAIN_HANDLED //otherwise winblows can't understand this file
-#include <SDL2/SDL.h>
-#include "engine/window.h"
-#include "engine/player.h"
-#include "engine/timer.h"
-#include "engine/renderer.h"
-#include "engine/audio.h"
-#include "engine/game.h"
-#include "engine/map.h"
-#include "engine/mod.h"
-#include "engine/logging.h"
-#include "engine/filesys.h"
-//i should make main.h bruh
-#include <vector>
-#include <iostream> // to debug
-//fuck you git
+#include "main.h"
 
 GameCamera camera = GameCamera(GameVector(0,0));
+bool running = true;
 
 int main(int argc, char *argv[]) {
-    bool running = true;
+    running = true;
     SDL_Event event;
 
     printf("OPEN-MOTHER - This engine is heavily unfinished, if you managed to compile it, congratulations\n");
@@ -37,6 +24,7 @@ int main(int argc, char *argv[]) {
     init_time();
     init_player();
     init_audio();
+    console_init();
     // play_music("src/assets/music/somemusic.ogg");
 
     // TODO
@@ -49,10 +37,15 @@ int main(int argc, char *argv[]) {
     // readomm("maps/map.omm"); // loads map
     load_map("maps/map.omm");
 
+    pthread_t consolethread;
+    pthread_create(&consolethread, NULL, listen_for_commands, NULL);
 
     while (running) {
         while (SDL_PollEvent(&event)) {
-            if (event.type == SDL_QUIT) running = false;
+            if (event.type == SDL_QUIT) {
+                running = false;
+                pthread_cancel(consolethread);
+            }
 
             if (event.type == SDL_WINDOWEVENT) {
                 switch (event.window.event) {
@@ -69,7 +62,7 @@ int main(int argc, char *argv[]) {
         // printf("x: %i, y: %i\n", windowWidth, windowHeight);
         // printf("X: %f, Y: %f\n", player.y, player.x);
         calculate_dt();
-        player_move();
+        player_move(); // TODO transform this in lua
         camera.setpos(playerpos);
         for (auto& tile : map.tiles) { // renders map tiles, temporary
             tile.render(renderer);
@@ -77,9 +70,15 @@ int main(int argc, char *argv[]) {
         player_render();
         render_show();
         render_clear();
+
+        if(is_key_pressed(SDL_SCANCODE_P)){
+            console_init();
+        }
     
         SDL_Delay(6);//do this or else the movement won't work?
     }
+    pthread_join(consolethread, NULL);
+
     stop_audio();
     exit_sdl();
     
@@ -87,14 +86,8 @@ int main(int argc, char *argv[]) {
 }
 
 // ! QADTDL
-// DONE - fix the fullscreen thing
-// DONE - i put the player in the middle, all i need to do now is to add SCRW/2 to every tile's X and SRCH/2 to every tile's Y
-// DONE - TODO - import textures
-// DONE - just for tiles for now
-// DONE - import every texture inside textures folder of mod
+
 // TODO - missing.jpg will be special
-// DONE - TODO - start working on maps!
-// maybe i should try importing a handmade map first.
-// DONE - TODO - start making mods instead of hardcoding the shit in here
 // TODO -- almost done, now assets per mod, include main lua files and maps
 // TODO - start working on entities
+// ! TODO - CONSOLE

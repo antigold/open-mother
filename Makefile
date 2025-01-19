@@ -1,7 +1,7 @@
 # Compiler and flags
 CXX := g++
 CXXFLAGS := -Wall -Wextra -std=c++17 -I./src `sdl2-config --cflags`
-LDFLAGS := `sdl2-config --libs` -lSDL2_mixer -lSDL2_image
+LDFLAGS := `sdl2-config --libs` -lSDL2_mixer -lSDL2_image -lSDL2_ttf -pthread
 
 # Directories
 SRC_DIR := src

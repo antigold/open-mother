@@ -33,3 +33,4 @@ struct MapData{
 extern MapData map; // whole mapdata here
 
 void load_map(const char* filepath);
+void unload_map();
