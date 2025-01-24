@@ -3,10 +3,12 @@
 #include <string>
 #include <unordered_map>
 #include <functional> // for functions?
+#include "audio.h"
 #include "map.h"
 #include "renderer.h"
 #include "main.h"
 #include "logging.h"
+#include "lua/lua.h"
 
-void console_init();
+void init_console();
 void* listen_for_commands(void* arg);

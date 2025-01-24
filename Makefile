@@ -1,7 +1,7 @@
 # Compiler and flags
 CXX := g++
-CXXFLAGS := -Wall -Wextra -std=c++17 -I./src `sdl2-config --cflags`
-LDFLAGS := `sdl2-config --libs` -lSDL2_mixer -lSDL2_image -lSDL2_ttf -pthread
+CXXFLAGS := -Wall -Wextra -std=c++17 -I./src -I./src/engine `sdl2-config --cflags`
+LDFLAGS := `sdl2-config --libs` -lSDL2_mixer -lSDL2_image -lSDL2_ttf -pthread -llua
 
 # Directories
 SRC_DIR := src
@@ -14,9 +14,12 @@ TARGET := releases/openmother
 
 # Source and object files
 MAIN_SRC := $(SRC_DIR)/main.cpp
-ENGINE_SRCS := $(wildcard $(ENGINE_SRC_DIR)/*.cpp)
+
+# Recursively find all .cpp files in src/engine and its subdirectories
+ENGINE_SRCS := $(wildcard $(ENGINE_SRC_DIR)/**/*.cpp) $(wildcard $(ENGINE_SRC_DIR)/*.cpp)
 SRCS := $(MAIN_SRC) $(ENGINE_SRCS)
 
+# Object files
 MAIN_OBJ := $(OBJ_DIR)/main.o
 ENGINE_OBJS := $(patsubst $(ENGINE_SRC_DIR)/%.cpp, $(ENGINE_OBJ_DIR)/%.o, $(ENGINE_SRCS))
 OBJS := $(MAIN_OBJ) $(ENGINE_OBJS)
@@ -26,6 +29,7 @@ all: $(TARGET)
 
 # Build target
 $(TARGET): $(OBJS)
+	@mkdir -p releases  # Ensure the releases directory exists
 	$(CXX) $(CXXFLAGS) $^ -o $@ $(LDFLAGS)
 
 # Build main.o
@@ -35,7 +39,7 @@ $(MAIN_OBJ): $(MAIN_SRC)
 
 # Build engine object files
 $(ENGINE_OBJ_DIR)/%.o: $(ENGINE_SRC_DIR)/%.cpp
-	@mkdir -p $(ENGINE_OBJ_DIR)
+	@mkdir -p $(dir $@)  # Ensure that the specific subdirectory exists
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 # Clean build
@@ -44,4 +48,3 @@ clean:
 
 # Phony targets
 .PHONY: all clean
-

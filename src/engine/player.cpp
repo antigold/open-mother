@@ -6,11 +6,12 @@
 #include "input.h"
 #include "window.h"
 #include <SDL2/SDL_rect.h>
-
+int speed = 0.0;
 SDL_FRect player;
 GameVector playerpos(0,0);
 
 void init_player(){
+    speed = 200;
     player = { -16.0f+(windowWidth/2), 16.0f+(windowHeight/2), 32.0f, 32.0f };
 }
 

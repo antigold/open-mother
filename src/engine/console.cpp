@@ -5,7 +5,7 @@
 
 std::unordered_map<std::string, std::function<void(std::string)>> commandmap; //command map
 
-void console_init(){ // inits concommands
+void init_console(){ // inits concommands
     // chatgpt time
     // 2. Insert the commands into the map
     commandmap["loadmap"] = [](const std::string& args) {
@@ -19,11 +19,12 @@ void console_init(){ // inits concommands
     // };
 }
 
+// TODO - fix this mess, add whatever i put above here inside this function
 void* listen_for_commands(void* arg) {
     char command[256];
 
     while (running) {
-        printf("Enter a command: ");
+        printf("> ");
         fgets(command, sizeof(command), stdin);
         
         // Remove newline character from input
@@ -35,14 +36,14 @@ void* listen_for_commands(void* arg) {
             break;
         } if (strcmp(command, "loadmap") == 0) {
             unload_map();
-            load_map("maps/yna.omm");
+            load_map("maps/dev.omm");
+        } if (strcmp(command, "speedy") == 0) {
+            lua_callfunction(L, "lol", 9000); //test function, might not even work if u don't have a mod
+            // printf("h");
         } else {
             printf("Unknown command: %s\n", command);
         }
     }
-    
-
-    printf("returning");
     return NULL;
 }
 

@@ -19,25 +19,19 @@ int main(int argc, char *argv[]) {
     fetch_mod_data(argv[1]);
 
     //initializes stuff
-    init_sdl();
-    get_window_resolution();
-    init_time();
-    init_player();
-    init_audio();
-    console_init();
-    // play_music("src/assets/music/somemusic.ogg");
+    init_sdl(); //SDL
+    get_window_resolution(); //gets initial window resolution
+    init_time(); //delta time
+    init_player(); // player -> soon will become lua
+    init_audio(); // SDL mixer
+    init_lua(); // initializes lua state
+    init_console(); // starting console and gets concommands from lua files
 
-    // TODO
-    // add_texture("test", get_relative_path("textures/pinkie.jpg"), renderer);
-    // add_texture("swag", get_relative_path("textures/swag.jpg"), renderer);
-    // add_texture("missing", get_relative_path("textures/missing.jpg"), renderer);
+    fetch_mod_textures(); //gets all textures from mod/textures
 
-    fetch_mod_textures();
+    load_map("maps/map.omm"); //loads map (remove soon)
 
-    // readomm("maps/map.omm"); // loads map
-    load_map("maps/map.omm");
-
-    pthread_t consolethread;
+    pthread_t consolethread; //another thread for console so both run at the same time
     pthread_create(&consolethread, NULL, listen_for_commands, NULL);
 
     while (running) {
@@ -72,7 +66,7 @@ int main(int argc, char *argv[]) {
         render_clear();
 
         if(is_key_pressed(SDL_SCANCODE_P)){
-            console_init();
+            init_console();
         }
     
         SDL_Delay(6);//do this or else the movement won't work?
@@ -88,6 +82,6 @@ int main(int argc, char *argv[]) {
 // ! QADTDL
 
 // TODO - missing.jpg will be special
-// TODO -- almost done, now assets per mod, include main lua files and maps
+// TODO - almost done, now assets per mod, include main lua files and maps
 // TODO - start working on entities
-// ! TODO - CONSOLE
+// TODO - zoom in (add + zoompixel to relative distance and tiles += zoomdistance pixels?)
