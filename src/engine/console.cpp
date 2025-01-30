@@ -37,9 +37,15 @@ void* listen_for_commands(void* arg) {
         } if (strcmp(command, "loadmap") == 0) {
             unload_map();
             load_map("maps/dev.omm");
-        } if (strcmp(command, "speedy") == 0) {
+        } if (strcmp(command, "lua") == 0) {
             lua_callfunction(L, "lol", 9000); //test function, might not even work if u don't have a mod
             // printf("h");
+        } if (strcmp(command, "mpause") == 0) {
+            Mix_PauseMusic();
+        } if (strcmp(command, "mplay") == 0) {
+            Mix_ResumeMusic();
+        } if (strcmp(command, "bell") == 0) {
+            play_sound("sound/logo.wav");
         } else {
             printf("Unknown command: %s\n", command);
         }

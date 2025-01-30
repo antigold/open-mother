@@ -45,8 +45,7 @@ bool init_lua() {
         return false;
     }
 
-    lua_register(L, "set_speed", set_speed); // makes "set_speed" (lua) run the function set_speed (c++)
-
+    lua_initregisters();
     lua_callfunction(L, "badunki_rungi_punghiz_da_bic_boss"); // ??????????????? don't remove, maybe replace with init someday? ! stopped working
     
     return true;

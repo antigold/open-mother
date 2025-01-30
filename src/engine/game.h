@@ -4,6 +4,8 @@
 #include <unordered_map>
 #include <string>
 
+// relative xy = used in rendering
+// xy = absolute positions
 // ! CLASSES //
 // ! Game 2D Vector class
 class GameVector {

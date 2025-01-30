@@ -80,7 +80,9 @@ int main(int argc, char *argv[]) {
 }
 
 // ! QADTDL
-
+// TODO - fix threads in sound stuff
+// TODO - fix console stuff
+// TODO - fix map addtile
 // TODO - missing.jpg will be special
 // TODO - almost done, now assets per mod, include main lua files and maps
 // TODO - start working on entities
