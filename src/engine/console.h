@@ -3,6 +3,7 @@
 #include <string>
 #include <unordered_map>
 #include <functional> // for functions?
+#include <cstring>
 #include "audio.h"
 #include "map.h"
 #include "renderer.h"

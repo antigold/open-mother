@@ -22,17 +22,18 @@ int main(int argc, char *argv[]) {
     init_sdl(); //SDL
     get_window_resolution(); //gets initial window resolution
     init_time(); //delta time
+    fetch_mod_textures(); //gets all textures from mod/textures
     init_player(); // player -> soon will become lua
     init_audio(); // SDL mixer
     init_lua(); // initializes lua state
     init_console(); // starting console and gets concommands from lua files
 
-    fetch_mod_textures(); //gets all textures from mod/textures
-
     load_map("maps/map.omm"); //loads map (remove soon)
 
     pthread_t consolethread; //another thread for console so both run at the same time
     pthread_create(&consolethread, NULL, listen_for_commands, NULL);
+
+    // map.tiles.emplace_back(MapTile(0,0,get_texture("swag")));
 
     while (running) {
         while (SDL_PollEvent(&event)) {
@@ -80,10 +81,9 @@ int main(int argc, char *argv[]) {
 }
 
 // ! QADTDL
-// TODO - fix threads in sound stuff
+// TODO - fix logs, make std::cout, printf and put more consistent
 // TODO - fix console stuff
 // TODO - fix map addtile
-// TODO - missing.jpg will be special
 // TODO - almost done, now assets per mod, include main lua files and maps
 // TODO - start working on entities
 // TODO - zoom in (add + zoompixel to relative distance and tiles += zoomdistance pixels?)

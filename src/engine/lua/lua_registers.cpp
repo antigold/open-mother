@@ -32,13 +32,24 @@ int luar_add_tile(lua_State* L) {
     return 0;
 }
 
+int luar_set_player_position(lua_State* L) {
+    //at least 2 args
+    if (lua_gettop(L) >= 2) {
+        if (lua_isnumber(L, -2) && lua_isnumber(L, -1)) {
+            float xpos = lua_tonumber(L, -2);  //first argument
+            float ypos = lua_tonumber(L, -1);  //second argument 
 
-int luar_set_speed(lua_State* L) {
-    if (lua_isnumber(L, -1)) {
-        speed = lua_tonumber(L, -1);  // Update speed in C++
+            playerpos = GameVector(xpos,ypos);
+
+        } else {
+            lua_pushstring(L, "LUA ERROR : player.setpos() expects two numbers");
+            lua_error(L);
+        }
     } else {
-        put(ERROR_CODE, "LUA ERROR : speed should be a number");
+        lua_pushstring(L, "LUA ERROR : player.setpos() expects two arguments");
+        lua_error(L);
     }
+    
     return 0;  // No return value
 }
 
@@ -60,7 +71,7 @@ int luar_play_sound(lua_State* L){
 }
 
 void lua_initregisters(){
-    lua_register(L, "set_speed", luar_set_speed); // makes "set_speed" (lua) run the function set_speed (c++)
+    lua_register(L, "set_player_position", luar_set_player_position); // makes "set_speed" (lua) run the function set_speed (c++)
     lua_register(L, "get_dt", luar_get_dt); // gets delta time
     lua_register(L, "add_tile", luar_add_tile); // adds tile on map
     lua_register(L, "play_sound", luar_play_sound); // adds tile on map

@@ -8,6 +8,8 @@
 #include "audio.h"
 #include "filesys.h"
 
+int tilesize = 80;
+
 MapData map;
 // * MAP TILE
 // TODO - make this class a bit better cuz now it's kinda bad
@@ -25,16 +27,27 @@ MapData map;
 // Render function implementation
 void MapTile::render(SDL_Renderer* renderer) {
     SDL_FRect renderTile = {
-        pos.getrelativex() + (pos.getx() * 59), // why the fuck does it work when i write 39
-        pos.getrelativey() + (pos.gety() * 59), // 39 or else it leaves gaps even tho it's 40x40
-        60,
-        60
+        pos.getrelativex() + (pos.getx() * (tilesize - 1)), // why the fuck does it work when i subtract 1
+        pos.getrelativey() + (pos.gety() * (tilesize - 1)), // otherwise leaves gaps
+        tilesize,
+        tilesize
     };
 
     // printf("%f - %f\n", pos.getx(), pos.gety());
     // SDL_SetRenderDrawColor(renderer, r, g, b, 255); //color
     // SDL_RenderFillRectF(renderer, &renderTile); //draws on screen
     SDL_RenderCopyF(renderer, texture, nullptr, &renderTile);
+}
+
+// TODO optimize
+// get tile AABB
+void MapTile::aabb(){
+    // put(INFO_CODE,"sartek");
+    corners[0] = GameVector(pos.getx()*tilesize, pos.gety()*tilesize);
+    corners[1] = GameVector((pos.getx()*tilesize)+tilesize, pos.gety()*tilesize);
+    corners[2] = GameVector(pos.getx()*tilesize, (pos.gety()*tilesize)+tilesize);
+    corners[3] = GameVector((pos.getx()*tilesize)+tilesize, (pos.gety()*tilesize)+tilesize);
+    // std::cout << corners[0].getx();
 }
 
 // std::vector<MapTile> tiles; // declare

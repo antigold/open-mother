@@ -7,6 +7,7 @@
 #include "vector"
 #include "filesys.h"
 #include "audio.h"
+#include "logging.h"
 
 class MapTile {
 private:
@@ -15,9 +16,17 @@ private:
     SDL_Texture* texture;
 
 public:
-    MapTile(float xpos, float ypos, SDL_Texture* texture)
-        : pos(xpos, ypos), texture(texture) {}
+    bool top_col;
+    bool bot_col;
+    bool left_col;
+    bool right_col;
+    GameVector corners[4] = {GameVector(0,0),GameVector(0,0),GameVector(0,0),GameVector(0,0)};
+    MapTile(float xpos, float ypos, SDL_Texture* texture) // TODO soon add collision
+        : pos(xpos, ypos), texture(texture) {
+            aabb();
+        }
     void render(SDL_Renderer* renderer);
+    void aabb();
 };
 
 struct MapData{

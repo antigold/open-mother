@@ -46,7 +46,7 @@ bool init_lua() {
     }
 
     lua_initregisters();
-    lua_callfunction(L, "badunki_rungi_punghiz_da_bic_boss"); // ??????????????? don't remove, maybe replace with init someday? ! stopped working
+    lua_callfunction(L, "main"); // calls main and im not even gonna check for error cuz it wont crash anyway
     
     return true;
 }
